@@ -1,0 +1,214 @@
+1- TERMINAL FUNDAMENTALS
+
+
+- What is the difference between / and ~? What do we call each of these directories?
+/ is the root directory
+~ is shorthand for home directory 
+
+- What command do we use to change directories?
+Cd: change directories
+
+- What is the difference between an absolute and relative path?
+Absolute path: specific path starting at the root directory(/)
+Relative path: is relative to where you are at the moment.
+
+WORKING WITH FILES & FOLDERS
+
+Exercises
+- Create a file called name.txt: touch name.txt
+
+- Try renaming the file to rename.txt using the mv command. What does this tell you about the command?: mv name.txt rename.txt
+
+- Using the cp command, make a copy of rename.txt and call it copy.txt: cp rename.txt copy.txt
+
+- Remove the file copy.txt: rm copy.txt
+
+- Create a folder called questions: mkdir questions
+
+- Change directories to the questions folder: cd questions
+
+- Create a file called first.txt: touch first.txt
+
+- Create a file called second.txt: touch second.txt
+
+- Go back a directory and make a copy of the questions folder and call it questions_copy.
+When using cp -r what is the -r called? What does it do?: 
+cd ..
+cp -r questions questions_copy
+r used for when coping a directory.  It will copy everything inside it. 
+
+
+Delete the original questions folder and the copy.
+rm -rf questions
+rm -rf questions_copy
+
+TERMINAL BASIC EXERCISES
+
+PART I
+
+- Make a directory called first: mkdir first
+
+- Change directory to the first folder: cd first
+
+- Create a file called person.txt: touch person.txt
+
+- Change the name of person.txt to another.txt: mv person.txt another.txt
+
+- Make a copy of the another.txt file and call it copy.txt: cp another.txt copy.txt
+
+- Remove the copy.txt file: rm copy.txt
+
+- Make a copy of the first folder and call it second: cp -r first second
+
+- Delete the second folder: rm -rf second
+
+
+
+PART II
+
+- What does the man command do? Type in man rm. How do you scroll and get out? Man lists the manual for a command. To scroll: advance 1/2 page (D), 1/2 page back(u), one page back(b)
+
+- Look at the man page for ls. What does the -l flag do? What does the -a flag do? -l list files in a list format with more details, and -a list all files including hidden ones.
+
+- Type the following command to download and save the contents of google.com: curl https://www.google.com > google.html
+
+- Use less to look at the contents of google.html.
+
+- Look at the man page for less. Read the section on /pattern. Search for the text hplogo in the google.html file.
+
+- How do you jump between words in the terminal? Option + left or right arrow.
+
+- How do you get to the end of a line in terminal? Control + e
+
+- How do you move your cursor to the beginning in terminal? Control + a
+
+- How do you delete a word (without pressing backspace multiple times) in terminal? Control + w
+
+What is the difference between a terminal and shell? Shell is the program that handles the commands, and the terminal is the interface to interact with the shell.
+
+- What is an absolute path?Is a  path starting at the root directory(/) and gives the complete location of a file or directory.
+
+- What is an relative path?is a path starting at the current location.
+
+- What is a flag? Give three examples of flags you have used. A flag adds additional functionality to a command.  I had use -a,-l,-r,-rf
+
+- What do the r and f flags do with the rm command? R will remove all folders, and f will force removal.
+
+
+2- PERMISSIONS,REDIRECTION AND PIPING
+
+PART I
+- Create a file called restricted.txt.
+touch restricted.txt
+
+- Change the permissions on the restricted.txt file to allow the owner to read and write to the restricted.txt file. Do this using the Octal Notation.
+ chmod 600 restricted.txt 
+
+- Change the permissions on the restricted.txt file to only allow the owner, group and everyone to read and write and execute the restricted.txt file. Do this using the Symbolic notation.
+ chmod 777 restricted.txt
+
+- Create a folder called secret_files. Inside the secret_files folder create a file called first_secret.txt and another folder called classified. Inside of the classified folder create a file called super_secret.txt.
+
+ mkdir secret_files
+ cd secret_files
+ touch first_secret.txt
+ mkdir classified
+ cd classified
+ touch super_secret.txt
+	
+ 
+
+- Change the permissions on the secret_files to only allow the owner and group to read, write and execute in all the files and folders inside of secret_files. Do this using the Octal Notation.
+
+ 
+chmod -R 770 secret_files 
+
+- Create a hard link for the restricted.txt called hard_link.
+ln restricted.txt hard_link 
+
+- Create a symbolic link for the classified folder called classified_link.
+ln -s secret_files/classified classified_link
+
+
+PART II
+
+Write the following terminal commands to do the following
+
+-Sort vegetables.txt.
+ sort vegetables.txt
+
+- Count the number of lines in vegetables.txt.
+ wc -l vegetables.txt 
+
+-n Create a file called vegetables_sorted.txt which contains all the unique vegetables sorted in ascending order in vegetables.txt (do this without the touch command).
+
+cat vegetables.txt |sort | uniq > vegetables_sorted.txt
+
+- Create a file called last_three.txt which contains the last three vegetables in the vegetables.txt file (do this without the touch command).
+
+cat vegetables.txt| tail -n 3 > last_three.txt
+
+
+-Count the number of lines the word "Broccoli" appears on (using wc and grep).
+ Cat vegetables.txt | grep "Broccoli" | wc -l
+
+
+
+ 
+
+
+3- ENVIRONMENT, PROCESS AND FINDING
+
+Part I
+Answer the following questions:
+
+- Create an environment variable called FIRST_NAME and set it equal to your first name (this does not need to be permanent): export FIRST_NAME=Mary
+
+- Print the FIRST_NAME variable: echo $FIRST_NAME
+
+- Print out the $PATH variable: echo $PATH
+
+- What is the $PATH variable? Set of paths for our environment to find where to run commands
+
+- Why would you want to create an environment variable? 
+
+- How do you permanently save environment variables? On the configuration file for shell(.zshrc or .bash_profile)
+
+- What is a process? A computer program that is running.
+
+- How do you list all processes running on your machine? ps aux
+
+- What is a PID? Number unique to a process.
+
+- How do you terminate a process? Kill or kill -9, and you use its PID.
+
+- What is the difference between kill and kill -9? Kill -9 forces to stop the process(it won't be ignored) when kill is not working.
+
+- What grep flag allows for case insensitive search? i. 
+
+- What grep flag allows for a certain number of lines before the match? B
+
+- What grep flag allows for a certain number of lines around the match? C 
+
+- What grep flag allows for a certain number of lines after the match? A
+
+- What grep flag allows for full word search? w
+
+- What grep flag shows you the line number of a match? n
+
+Part II
+Write the following terminal commands to do the following (assume that instructors.txt is an imaginary file):
+
+- Find all files inside the Desktop folder that have a name of "learn." : find ~/Desktop -name "learn"
+
+- Find all files inside the Desktop folder that start with a "P.": find ~/Desktop -name "P.*"
+
+- Find all files inside the Desktop folder that end with .txt.: find ~/Desktop -name "*.txt"
+
+- Find all files inside the Desktop/views folder that have the name data somewhere in their filename: find ~/Desktop -name "*data*"
+
+- Inside of the instructors.txt file, output the number of times the word "Elie" appears: grep -c "Elie" instructor.txt
+
+- Inside of the instructors.txt file, list all matches for any full word that starts with a capital "P.": grep -w "P.*" instructor.txt
+
+- Inside of the instructors.txt file, list all the line numbers for any full word that starts with a "z" (it should match regardless of upper or lower case): grep -ni "z.*" instructor.txt
