@@ -1,0 +1,115 @@
+GIT BASICS EXERCISES
+
+
+
+
+-Create a folder called learn_git_again: mkdir learn_git_again
+
+- cd into the learn_git_again folder: cd learn_git_again
+
+- Create a file called third.txt: touch third.txt
+
+- Initialize an empty git repository: git init
+
+- Add third.txt to the staging area: git add third.txt
+
+- Commit with the message "adding third.txt": git commit -m "adding third.txt"
+
+- Check out your commit with git log: git log
+
+- Create another file called fourth.txt: touch fourth.txt
+
+- Add fourth.txt to the staging area: git add fourth.txt
+
+- Commit with the message "adding fourth.txt": git commit -m 'adding fourth.txt'
+
+- Remove the third.txt file: rm third.txt
+
+- Add this change to the staging area: git add .
+
+- Commit with the message "removing third.txt": git commit -m 'removing third.txt'
+
+- Check out your commits using git log: git log
+
+- Change your global setting to core.pager=cat - you can read more about that here: git config --global core.pager 'cat'
+
+- Write the command to list all of the global configurations for git on your machine. You can type git config --global to find out how to do this: git config --global--list
+
+
+BRANCHING AND MERGING EXERCISES
+
+Part I
+Answer the following questions:
+
+-What does git clean do?remove files that are not staged.
+
+-What do the -d and -f flags for git clean do? Remove untracked directories in addition to untracked files. If an untracked directory is managed by a different Git repository, it is not removed by default. Use -f option twice if you really want to remove such a directory.
+
+- What git command creates a branch? git checkout -b
+
+- What is the difference between a fast-forward and recursive merge? In a fast-forward merge can easily  tell when commits happened and puts one on top of another chronologically. A recursive merge happens when git can not easily decide the order the commits happened.  In this case git use an algorithm to try to merge branches when a fast-forward merge doesn't work.
+
+- What git command changes to another branch? git checkout name_of_branch
+
+- How do you remove modified or deleted files from the working directory? Git checkout
+
+- What git command deletes a branch? git checkout -D branch_name 
+
+- What does the git diff command do? Compares the history of the code at two different points in time.
+
+- How do you remove files from the staging area? git rm --cached name-of-file
+
+- How do merge conflicts happen? When you commit changes to the same file on two different branches, and git doesn't know which commit go with, so git creates a merge conflict.
+
+
+Part II
+
+- Create your own merge conflict! Work on the same file on two separate branches and merge the two branches together. Fix the conflicts and finish your merge. In the real world you will never intentionally try to create merge conflicts, but it is important to understand how and why they are created. Most importantly, it's important not to be intimidated by merge conflicts, and to be able to fix them with confidence!
+
+mkdir merge_conflict
+cd merge_conflict
+git init
+touch first.txt
+git add first.txt
+git commit -m 'add first'
+
+git checkout -b problema
+echo hola>first.txt
+git add first.txt
+git commit -m 'add hola to first'
+git checkout master
+
+echo hi>first.txt
+git add first.txt
+git commit -m 'add hi to first'
+git merge problema
+CONFLICT!!!!
+
+echo hola>first.txt
+git add .
+git commit -m 'change hi to hola'
+git merge problema
+
+
+GITHUB EXERCISES
+
+Part I
+Let's start by taking a bit of time to practice the git workflow below. It is so valuable to just practice this workflow a couple times, since you will most likely doing it professionally as well as in your individual projects and open source contributions. Here are some things to do.
+
+-Create a local repository and add and commit some files
+
+- Create a remote repository and push your code from the local repo to the remote
+
+- Fork the repo https://github.com/rithmschool/git_practice - clone it and submit a pull request
+
+- Create a new branch locally and push it to GitHub
+
+- Submit a pull request with your new branch against the master branch on the git_practice repo.
+
+
+Part II - Command Line Murder Mystery
+
+- If you have gone through our Terminal and UNIX course, take the time to combine your knowledge of the Terminal, Git, and GitHub to complete a murder mystery! You can find the exercises here. Fork and clone the repository and try to solve the mystery!
+
+
+
